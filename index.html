@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/swiper-3.4.2.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <style>
+     *{
+       padding:0px;
+       margin:0px;
+     }
+     body{
+       width:100%;
+       height:100%;
+       background: white;
+     }
+     .swiper-container{
+       position: absolute;
+       top:5%;
+         width:100%;
+         height: 95%;
+
+
+
+
+     }
+     .swiper-wrapper{
+       width:100%;
+
+
+
+
+     }
+     .swiper-wrapper img{
+       width:100%;
+       height:100%;
+     }
+     .bottom{
+       width:100%;
+       height:8%;
+       position: fixed;
+       bottom: 0px;
+       left:0px;
+       background:rgba(0,0,0,0.5);
+       z-index: 66;
+     }
+     .bottom>span{
+       display: block;
+       float:left;
+       width: 20%;
+       height:100%;
+
+     }
+    .bottom>span>i{
+      display: block;
+      width:100%;
+      height: 95%;
+      color:white;
+      line-height: 45px;
+      text-align: center;
+      font-size: 30px;
+
+    }
+    .menu-active{
+      border-bottom: 4px solid #12ec12;
+    }
+    .top{
+      width:100%;
+      height:5%;
+      position: fixed;
+      top: 0px;
+      left:0px;
+      background:rgba(0,0,0,0.95);
+      z-index: 66;
+    }
+    .top>span{
+      display: inline-block;
+
+      width: 10%;
+      height:100%;
+    }
+    .top>span>i{
+      display: block;
+      width:100%;
+      height: 95%;
+      color:white;
+      line-height: 28px;
+      text-align: center;
+      font-size: 18px;
+
+    }
+    .left{
+      float: left;
+    }
+    .right{
+      float: right;
+    }
+    .now_time{
+      padding-left: 20px;
+    }
+    .fa-comments{
+      padding-left: 25px;
+    }
+    .fa-cloud{
+      padding-left: 15px;
+    }
+
+    </style>
+</head>
+<body>
+  <audio src="background.mp3" autoplay hidden loop="-1"></audio>
+  <div class="top">
+    <span><i class="fa now_time">00:00</i></span>
+    <span><i class="fa fa-comments"></i></span>
+    <span><i class="fa fa-cloud"></i></span>
+    <span class="right" style="padding-right:30px;"><i class="fa fa-battery  ">&nbsp;98%</i></span>
+    <span class="right "style=""><i class="fa fa-signal "></i></span>
+    <span class="right"><i class="fa fa-wifi"></i></span>
+  </div>
+  <div class="swiper-container">
+     <div class="swiper-wrapper">
+         <div class="swiper-slide"><img src="img/1.jpg" alt="图片1"></div>
+         <div class="swiper-slide"><img src="img/2.jpg" alt="图片2"></div>
+         <div class="swiper-slide"><img src="img/3.jpg" alt="图片3"></div>
+         <div class="swiper-slide"><img src="img/4.jpg" alt="图片4"></div>
+         <div class="swiper-slide"><img src="img/5.jpg" alt="图片5"></div>
+
+     </div>
+   <!-- 如果需要分页器 -->
+   <!-- <div class="swiper-pagination"></div> -->
+
+   <!-- 如果需要导航按钮 -->
+   <!-- <div class="swiper-button-prev"></div>
+   <div class="swiper-button-next"></div> -->
+
+   <!-- 如果需要滚动条 -->
+   <!-- <div class="swiper-scrollbar"></div> -->
+</div>
+<div class="bottom">
+    <span><i class="fa fa-user menu-active"></i></span>
+    <span><i class="fa fa-graduation-cap"></i></span>
+    <span><i class="fa fa-briefcase"></i></span>
+    <span><i class="fa fa-github"></i></span>
+    <span><i class="fa fa-envelope " id="full"></i></span>
+</div>
+
+</body>
+<script type="application/javascript" src="js/jquery-3.2.1.js"></script>
+<script type="application/javascript" src="js/swiper-3.4.2.jquery.min.js"></script>
+<script type="application/javascript" src="js/swiper.animate1.0.2.min.js"></script>
+<script>
+    $(document).ready(function(){
+        //gettime
+        function getTime(){
+          var time = new Date();
+          var hour = time.getHours()>=10?time.getHours():'0'+time.getHours();
+          var min = time.getMinutes()>=10?time.getMinutes():'0'+time.getMinutes();
+
+          // return `${hour}:${min}`
+          return hour+":"+min;
+        }
+        setInterval(function(){
+          $('.now_time').text(getTime());
+        },1000);
+         //游览器全屏
+
+
+
+
+              var viewFullScreen =$(document);
+
+                 if (viewFullScreen) {
+              viewFullScreen.on('click',function () {
+                         var docElm = document.documentElement;
+                         if (docElm.requestFullscreen) {
+                             docElm.requestFullscreen();
+                         }
+                         else if (docElm.msRequestFullscreen) {
+                             docElm = document.body; //overwrite the element (for IE)
+                             docElm.msRequestFullscreen();
+                         }
+                         else if (docElm.mozRequestFullScreen) {
+                             docElm.mozRequestFullScreen();
+                         }
+                         else if (docElm.webkitRequestFullScreen) {
+                             docElm.webkitRequestFullScreen();
+                         }
+                     });
+                 }
+
+
+
+
+                 window.onresize = function(){
+                   $('.swiper-wrapper').height($(window).height()*0.95);
+                   $('.swiper-wrapper').width($(window).width());
+
+                  }
+
+
+        $('.swiper-wrapper').height($(window).height()*0.95);
+        $('.swiper-wrapper').width($(window).width());
+        // console.log($(window).height());
+        var mySwiper = new Swiper ('.swiper-container', {
+        direction: 'vertical',
+        loop: false,
+        // autoplay:1000,
+
+
+        // 如果需要分页器
+        // pagination: '.swiper-pagination',
+
+        // 如果需要前进后退按钮
+        // nextButton: '.swiper-button-next',
+        // prevButton: '.swiper-button-prev',
+        preloadImages:true,
+        paginationClickable:true,
+        mousewheelControl : true,
+        mousewheelForceToAxis:true
+
+        // 如果需要滚动条
+        // scrollbar: '.swiper-scrollbar',
+        })
+
+    });
+</script>
+<script>
+
+</script>
+
+
+</html>
